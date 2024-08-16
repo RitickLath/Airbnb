@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// User model represents users on the platform (hosts and guests)
+model User {
+  id           Int        @id @default(autoincrement())
+  
+  name         String?
+  email        String     @unique
+  passwordHash String
+  phoneNumber  String?
+  profilePic   String?
+  isVerified   Boolean    @default(false)
+  
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relationships
+  properties   Property[] // Properties owned by the user
+  bookings     Booking[]  // Bookings made by the user
+  reviews      Review[]   // Reviews written by the user
+  favourites   Favorite[] // User's favorite properties
+}
+
+
+// Property model 
+model Property {
+  id           Int        @id @default(autoincrement())
+
+  // Relationship with User 
+  user         User       @relation(fields: [userId], references: [id])
+  userId       Int
+
+  title        String
+  description  String
+  propertyType String
+  
+  pricePerNight Float
+  category      String[]
+  tags         String[]
+  images       String[]
+  
+  address      String
+  city         String
+  state        String
+  country      String
+  postalCode   String?
+
+  latitude     Float?
+  longitude    Float?
+  
+  maxGuests    Int?
+  
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relationships
+  reviews      Review[]   // Reviews for property
+  favorites    Favorite[] // Users who have favorited the property
+  bookings     Booking[]  // Bookings for the property
+}
+
+
+// Booking model 
+model Booking {
+  id           Int        @id @default(autoincrement())
+
+  propertyId   Int
+  userId       Int
+
+  // Relationships
+  user         User       @relation(fields: [userId], references: [id])
+  property     Property   @relation(fields: [propertyId], references: [id])
+
+  checkIn      DateTime?
+  checkOut     DateTime?
+  totalPrice   Float?
+  guests       Int?
+}
+
+
+// Review model
+model Review {
+  id           Int        @id @default(autoincrement())
+
+  // Relationship with User (author)
+  user         User       @relation(fields: [userId], references: [id])
+  userId       Int
+
+  // Relationship with Property
+  property     Property   @relation(fields: [propertyId], references: [id])
+  propertyId   Int
+
+  comment      String
+  
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+
+// Favorite model
+model Favorite {
+  id           Int        @id @default(autoincrement())
+  
+  userId       Int
+  propertyId   Int
+  createdAt    DateTime   @default(now())
+
+  // Relationships
+  user         User       @relation(fields: [userId], references: [id])
+  property     Property   @relation(fields: [propertyId], references: [id])
+}

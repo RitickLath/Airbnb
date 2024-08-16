@@ -1,6 +1,6 @@
 import React from "react";
 import CategoriesCard from "./CategoriesCard";
-
+  
 import { MdOutlinePool } from "react-icons/md";
 import { MdLocalParking } from "react-icons/md";
 import { PiWashingMachine } from "react-icons/pi";
@@ -8,6 +8,9 @@ import { TbAirConditioning } from "react-icons/tb";
 import { GiFireplace } from "react-icons/gi";
 import { PiTelevisionFill } from "react-icons/pi";
 import { GiBarbecue } from "react-icons/gi";
+import { FaMountain } from "react-icons/fa";
+import { BsFillCameraVideoFill } from "react-icons/bs";
+import { RiHotelBedFill } from "react-icons/ri";
 
 // Define style constants
 const containerStyles = "px-12 lg:px-20 mt-10 py-10 bg-[#F7F7F7]";
@@ -29,6 +32,9 @@ const categories: Prop[] = [
   { icon: <GiFireplace />, title: "Fireplace >" },
   { icon: <PiTelevisionFill />, title: "TV >" },
   { icon: <GiBarbecue />, title: "Barbecue >" },
+  { icon: <FaMountain />, title: "Mountain View >" },
+  { icon: <BsFillCameraVideoFill />, title: "Cinema Room >" },
+  { icon: <RiHotelBedFill />, title: "Luxury Bedding >" },
 ];
 
 const Categories: React.FC = () => {
