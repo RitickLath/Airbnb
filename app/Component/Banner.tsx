@@ -1,7 +1,9 @@
+// "use client";
+
 import Image from "next/image";
 import Input from "./Input";
 import React from "react";
-import { getAllProperties } from "@/actions/properties";
+// import { addProperties, addUser, getAllProperties } from "@/actions/properties";
 
 // Style constants
 const containerStyles: string =
@@ -17,7 +19,9 @@ const Banner = () => {
       <div className={inputContainerStyles}>
         <Input />
       </div>
-      {getAllProperties()}
+      {/* {console.log(getAllProperties())} */}
+      {/* {addUser()} */}
+      {/* {addProperties()} */}
       <Image
         alt="banner"
         src="/Image/banner.jpg"
