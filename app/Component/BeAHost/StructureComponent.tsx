@@ -85,11 +85,7 @@ const StructureComponent = () => {
           />
         ))}
       </div>
-      <Link className="w-full  mt-4" href="/become-a-host/id/privacy-type">
-        <button className="relative w-full lg:w-[200px] bg-[black] text-white rounded-md py-2 mb-2 font-semibold">
-          Next
-        </button>
-      </Link>
+      
     </div>
   );
 };

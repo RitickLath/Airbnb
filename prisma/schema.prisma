@@ -11,39 +11,29 @@ datasource db {
 // User model represents users on the platform (hosts and guests)
 model User {
   id           Int        @id @default(autoincrement())
-  
   firstName String
   lastName String
-
   email        String     @unique
   passwordHash String
   phoneNumber  String?
   profilePic   String?
   isVerified   Boolean    @default(false)
-  
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-
-  // Relationships
-  aboutUser   AboutUser?
-  properties   Property[] // Properties owned by the user
-  bookings     Booking[]  // Bookings made by the user
-  reviews      Review[]   // Reviews written by the user
-  favourites   Favorite[] // User's favorite properties
-}
-
-model AboutUser {
-  id         Int       @id @default(autoincrement())
-  email      String    @unique
+  // additional details
   schooling  String?
   workPlace  String?
   birthDate  String?
   languages  String[]
   livesIn    String?
   about      String?
-
-  userId     Int      @unique
-  user       User     @relation(fields: [userId], references: [id])
+  // time zone
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  
+  // Relationships
+  properties   Property[] // Properties owned by the user
+  bookings     Booking[]  // Bookings made by the user
+  reviews      Review[]   // Reviews written by the user
+  favourites   Favorite[] // User's favorite properties
 }
 
 // Property model 
@@ -56,29 +46,24 @@ model Property {
 
   title        String
   description  String
-
   AboutProp    String?
   propertyType String
-  
   pricePerNight Float
   cleaningFee   Float
   ServiceFee    Float
-
   category      String[]
-  tags         String[]
+  tags          String[]
+  facilities    String[]
   images       String[]
-  
   address      String
   city         String
   state        String
   country      String
   postalCode   String?
-
   latitude     Float?
   longitude    Float?
-  
   maxGuests    Int?
-  
+  // time 
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 

@@ -5,35 +5,37 @@ import { MdFreeCancellation } from "react-icons/md";
 import { MdOutlineDoorSliding } from "react-icons/md";
 
 interface Property {
-  title: string;
-  description: string;
-  propertyType: string;
-  pricePerNight: number;
-  category: string[];
-  tags: string[];
-  images: string[];
-  address: string;
-  city: string;
-  state: string;
-  country: string;
-  postalCode: string;
-  user: {
+  title?: string;
+  description?: string;
+  propertyType?: string;
+  pricePerNight?: number;
+  category?: string[];
+  tags?: string[];
+  images?: string[];
+  address?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  postalCode?: string;
+  user?: {
     firstName: string;
     lastName: string;
   };
-  maxGuests: number;
-  cleaningFee: number;
-  ServiceFee: number;
+  maxGuests?: number;
+  cleaningFee?: number;
+  ServiceFee?: number;
 }
 
 interface DynamicPropertyProps {
   params: {
-    propertyId: number;
+    propertyId?: number;
   };
 }
 
 const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
-  const property: Property | null = await getPropertyById(params.propertyId);
+  const property: Property | null = await getPropertyById(
+    Number(params.propertyId)
+  );
 
   if (!property) {
     return <div>Property not found</div>;
@@ -56,39 +58,39 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
         )} */}
 
         {/* Property Title and Description */}
-        <h1 className="text-3xl font-bold mb-2">{property.title}</h1>
-        <h2 className="text-xl text-gray-700 mb-4">{property.description}</h2>
+        <h1 className="text-3xl font-bold mb-2">{property?.title}</h1>
+        <h2 className="text-xl text-gray-700 mb-4">{property?.description}</h2>
 
         {/* Property Details */}
         <div className="mb-6">
           <div className="text-lg font-semibold">
-            Property Type: {property.propertyType}
+            Property Type: {property?.propertyType}
           </div>
           <div className="text-lg font-semibold">
-            Price per Night: ${property.pricePerNight}
+            Price per Night: ${property?.pricePerNight}
           </div>
           <div className="text-lg font-semibold">
-            Max Guests: {property.maxGuests}
+            Max Guests: {property?.maxGuests}
           </div>
         </div>
 
         {/* Property Address */}
         <div className="mb-6">
           <h3 className="text-xl font-semibold mb-1">Address:</h3>
-          <p>{property.address}</p>
+          <p>{property?.address}</p>
           <p>
-            {property.city}, {property.state} {property.postalCode}
+            {property?.city}, {property?.state} {property?.postalCode}
           </p>
-          <p>{property.country}</p>
+          <p>{property?.country}</p>
         </div>
 
         {/* Host Information */}
         <div className="border-t border-gray-300 mt-6 pt-6">
           <h2 className="text-2xl font-bold mb-2">
-            Hosted by {property.user.firstName}
+            Hosted by {property?.user?.firstName}
           </h2>
           <p className="text-gray-600">
-            {`Designed by ${property.user.firstName} ${property.user.lastName}`}
+            {"Designed by ${property?.user?.firstName} ${property?.user?.lastName}"}
           </p>
         </div>
 
@@ -119,7 +121,7 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
         <div className="border-t border-gray-300 mt-6 pt-6">
           <h2 className="text-2xl font-bold mb-4">Categories & Tags</h2>
           <div className="flex flex-wrap gap-2">
-            {property.category.map((cat, index) => (
+            {property?.category?.map((cat, index) => (
               <span
                 key={index}
                 className="bg-gray-200 px-3 py-1 rounded-full text-sm"
@@ -127,7 +129,7 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
                 {cat}
               </span>
             ))}
-            {property.tags.map((tag, index) => (
+            {property?.tags?.map((tag, index) => (
               <span
                 key={index}
                 className="bg-gray-200 px-3 py-1 rounded-full text-sm"
@@ -170,8 +172,8 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
           <p className="text-gray-600 text-sm mt-2">You won't be charged yet</p>
           <div className="mt-4">
             <div className="flex justify-between">
-              <span>${property.pricePerNight} x 5 nights</span>
-              <span>${property.pricePerNight * 5}</span>
+              <span>${property?.pricePerNight} x 5 nights</span>
+              <span>${property?.pricePerNight || 1* 5}</span>
             </div>
             <div className="flex justify-between">
               <span>Cleaning fee</span>
@@ -183,11 +185,11 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
             </div>
             <div className="flex justify-between font-bold">
               <span>Total before taxes</span>
-              <span>
+              {/* <span>
                 {property.pricePerNight * 5 +
                   property.cleaningFee +
                   property.ServiceFee}
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

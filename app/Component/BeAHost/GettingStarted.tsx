@@ -72,10 +72,7 @@ const GettingStarted = () => {
 
         {/* Link */}
 
-        <Link
-          className="w-full h-full border-2"
-          href="/become-a-host/id/about-your-place"
-        >
+        <Link className="w-full h-full border-2" href="/become-a-host/id/setup">
           <button className="relative w-full lg:w-[200px] bg-[#F62E58] text-white rounded-md py-2 mb-2 font-semibold">
             Get Started
           </button>
