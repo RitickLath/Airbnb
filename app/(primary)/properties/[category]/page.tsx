@@ -1,4 +1,4 @@
-const DynamincCategory = ({ params }) => {
+const DynamincCategory: React.FC<any> = ({ params }) => {
   const decodedCategory = decodeURIComponent(params?.category);
 
   console.log(decodedCategory);

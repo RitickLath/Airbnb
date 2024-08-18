@@ -1,7 +1,7 @@
 import { getAllProperties } from "@/actions/properties";
 import Image from "next/image";
 import React from "react";
-import SinglePropertyCard from "./singlePropertyCard";
+import SinglePropertyCard from "./SinglePropertyCard";
 
 const AllProperties = async () => {
   const properties = await getAllProperties();

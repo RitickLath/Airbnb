@@ -3,9 +3,9 @@ import Link from "next/link";
 import React from "react";
 
 interface Property {
-  id: string;
+  id: number;
   title: string;
-  images: string;
+  images: string[];
   pricePerNight: number;
 }
 
@@ -28,7 +28,7 @@ const SinglePropertyCard: React.FC<SinglePropertyCardProps> = ({
     <Link href={`/${property.id}`} className={linkStyle}>
       <Image
         className={imageStyle}
-        src={property?.images}
+        src={property?.images[0]}
         alt={property.title}
         width={100}
         height={100}
