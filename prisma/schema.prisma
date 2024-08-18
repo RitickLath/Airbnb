@@ -12,9 +12,8 @@ datasource db {
 model User {
   id           Int        @id @default(autoincrement())
   
-  name         String?
-  // firstName String
-  // lastName String
+  firstName String
+  lastName String
 
   email        String     @unique
   passwordHash String
@@ -26,12 +25,26 @@ model User {
   updatedAt    DateTime   @updatedAt
 
   // Relationships
+  aboutUser   AboutUser?
   properties   Property[] // Properties owned by the user
   bookings     Booking[]  // Bookings made by the user
   reviews      Review[]   // Reviews written by the user
   favourites   Favorite[] // User's favorite properties
 }
 
+model AboutUser {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  schooling  String?
+  workPlace  String?
+  birthDate  String?
+  languages  String[]
+  livesIn    String?
+  about      String?
+
+  userId     Int      @unique
+  user       User     @relation(fields: [userId], references: [id])
+}
 
 // Property model 
 model Property {
@@ -43,11 +56,13 @@ model Property {
 
   title        String
   description  String
+
+  AboutProp    String?
   propertyType String
   
   pricePerNight Float
-  // cleaningFee Float
-  // ServiceFee Float
+  cleaningFee   Float
+  ServiceFee    Float
 
   category      String[]
   tags         String[]

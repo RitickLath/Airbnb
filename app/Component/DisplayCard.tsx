@@ -16,7 +16,7 @@ const paragraphStyle = "text-normal text-gray-500";
 
 const DisplayCard: React.FC<DisplayProps> = ({ image, title, paragraph }) => {
   return (
-    <Link href="" className={linkStyle}>
+    <Link href="/properties" className={linkStyle}>
       <Image
         alt="img"
         src={image}

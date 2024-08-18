@@ -18,8 +18,12 @@ interface Property {
   country: string;
   postalCode: string;
   user: {
-    name: string;
+    firstName: string;
+    lastName: string;
   };
+  maxGuests: number;
+  cleaningFee: number;
+  ServiceFee: number;
 }
 
 interface DynamicPropertyProps {
@@ -42,7 +46,7 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
         {/* {property.images.length > 0 && (
           <div className="relative w-full h-80 mb-6">
             <Image
-              src={`/${property.images[0]}`}
+              src={/${property.images[0]}}
               alt={property.title}
               layout="fill"
               objectFit="cover"
@@ -81,9 +85,11 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
         {/* Host Information */}
         <div className="border-t border-gray-300 mt-6 pt-6">
           <h2 className="text-2xl font-bold mb-2">
-            Hosted by {property.user.name}
+            Hosted by {property.user.firstName}
           </h2>
-          <p className="text-gray-600">Designed by {property.user.name}</p>
+          <p className="text-gray-600">
+            {`Designed by ${property.user.firstName} ${property.user.lastName}`}
+          </p>
         </div>
 
         {/* Property Features */}
@@ -136,7 +142,9 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
       {/* Booking Interface */}
       <div className="lg:w-1/3 lg:pl-8 mt-8 lg:mt-0">
         <div className="border p-4 rounded-lg shadow-lg">
-          <div className="text-2xl font-bold mb-4">₹62,637 / night</div>
+          <div className="text-2xl font-bold mb-4">
+            ${property.pricePerNight} / night
+          </div>
           <div className=" mb-4">
             <div className="mb-4 sm:mb-0 sm:mr-2">
               <label className="block text-gray-700">Check-in</label>
@@ -162,20 +170,24 @@ const DynamicProperty: React.FC<DynamicPropertyProps> = async ({ params }) => {
           <p className="text-gray-600 text-sm mt-2">You won't be charged yet</p>
           <div className="mt-4">
             <div className="flex justify-between">
-              <span>₹62,637 x 5 nights</span>
-              <span>₹3,13,183</span>
+              <span>${property.pricePerNight} x 5 nights</span>
+              <span>${property.pricePerNight * 5}</span>
             </div>
             <div className="flex justify-between">
               <span>Cleaning fee</span>
-              <span>₹3,313.33</span>
+              <span>${property.cleaningFee}</span>
             </div>
             <div className="flex justify-between">
               <span>Service fee</span>
-              <span>₹6,207.50</span>
+              <span>${property.ServiceFee}</span>
             </div>
             <div className="flex justify-between font-bold">
               <span>Total before taxes</span>
-              <span>₹3,22,703.83</span>
+              <span>
+                {property.pricePerNight * 5 +
+                  property.cleaningFee +
+                  property.ServiceFee}
+              </span>
             </div>
           </div>
         </div>

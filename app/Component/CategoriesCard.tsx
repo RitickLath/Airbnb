@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface Prop {
@@ -12,10 +13,16 @@ const iconStyles = "text-xl";
 
 const CategoriesCard: React.FC<Prop> = ({ icon, title }) => {
   return (
-    <div className={cardStyles}>
+    <Link
+      href={`/properties/${encodeURIComponent(title).substring(
+        0,
+        title.length
+      )}`}
+      className={cardStyles}
+    >
       <h1 className={iconStyles}>{icon}</h1>
       <h1>{title}</h1>
-    </div>
+    </Link>
   );
 };
 

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Input from "./Input";
 import React from "react";
-// import { addProperties, addUser, getAllProperties } from "@/actions/properties";
+import { addProperties, addUser } from "@/actions/properties";
 
 // Style constants
 const containerStyles: string =
@@ -19,7 +19,7 @@ const Banner = () => {
       <div className={inputContainerStyles}>
         <Input />
       </div>
-      {/* {console.log(getAllProperties())} */}
+
       {/* {addUser()} */}
       {/* {addProperties()} */}
       <Image

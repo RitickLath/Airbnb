@@ -25,7 +25,7 @@ const SinglePropertyCard: React.FC<SinglePropertyCardProps> = ({
   property,
 }) => {
   return (
-    <Link href={`/properties/id/${property.id}`} className={linkStyle}>
+    <Link href={`/${property.id}`} className={linkStyle}>
       <Image
         className={imageStyle}
         src={property?.images}

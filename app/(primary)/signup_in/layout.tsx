@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpFooter from "../Component/SignUpFooter";
+import SignUpFooter from "../../Component/SignUpFooter";
 
 const layout = ({ children }) => {
   return (

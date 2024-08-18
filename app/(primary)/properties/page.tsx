@@ -1,7 +1,8 @@
+import DisplayIcons from "@/app/Component/DisplayIcons";
+import Searchbar from "@/app/Component/Searchbar";
+import AllProperties from "@/app/Component/showAllProperty";
 import React from "react";
-import Searchbar from "../Component/Searchbar";
-import DisplayIcons from "../Component/DisplayIcons";
-import AllProperties from "../Component/showAllProperty";
+
 
 // Define style constants
 const containerStyle = "px-12 lg:px-12 mt-10";
